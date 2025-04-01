@@ -38,7 +38,7 @@ class MyRunnable implements Runnable {
     }
 }
 ```
-## ✅ Why use Runnable?
+#### ✅ Why use Runnable?
 
 Java supports single inheritance, so extending Thread prevents extending another class.
 
