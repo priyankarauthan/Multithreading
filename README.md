@@ -62,11 +62,17 @@ Terminated – Thread has finished execution.
 Method	Description
 
 start()	Starts a new thread.
+
 run()	Contains the code to be executed.
+
 sleep(ms)	Puts thread to sleep for a given time.
+
 join()	Waits for a thread to complete execution.
+
 yield()	Suggests giving other threads a chance to execute.
+
 isAlive()	Checks if the thread is still running.
+
 Example using join():
 
 ```
