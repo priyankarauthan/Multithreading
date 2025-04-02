@@ -44,7 +44,7 @@ Java supports single inheritance, so extending Thread prevents extending another
 
 Runnable is more flexible and widely used.
 
-3. Thread Lifecycle
+### 3. Thread Lifecycle
 A thread goes through several states:
 
 New – Created but not started (new Thread()).
@@ -57,7 +57,7 @@ Blocked/Waiting – Thread is waiting for a resource.
 
 Terminated – Thread has finished execution.
 
-4. Thread Methods
+### 4. Thread Methods
    
 Method	Description
 
@@ -129,7 +129,7 @@ class Counter {
     }
 }
 ```
-6. Executor Framework (Better Thread Management)
+### 6. Executor Framework (Better Thread Management)
 Java provides the Executor Framework for managing thread pools.
 
 ```
