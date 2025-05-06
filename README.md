@@ -159,4 +159,91 @@ Avoids creating too many threads.
 Manages thread lifecycles efficiently.
 
 
+#### Producer-Consumer Problem
+
+```
+public class ProducerConsumerExample {
+    public static void main(String[] args) {
+        Buffer buffer = new Buffer();
+        Thread producerThread = new Thread(new Producer(buffer));
+        Thread consumerThread = new Thread(new Consumer(buffer));
+
+        producerThread.start();
+        consumerThread.start();
+    }
+}
+
+class Producer implements Runnable {
+    private final Buffer buffer;
+
+    public Producer(Buffer buffer) {
+        this.buffer = buffer;
+    }
+
+    public void run() {
+        int item = 0;
+        while (true) {
+            try {
+                buffer.produce(item++);
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+class Consumer implements Runnable {
+    private final Buffer buffer;
+
+    public Consumer(Buffer buffer) {
+        this.buffer = buffer;
+    }
+
+    public void run() {
+        while (true) {
+            try {
+                buffer.consume();
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+class Buffer {
+    private final int capacity = 5;
+    private final Queue<Integer> queue = new LinkedList<>();
+
+    public synchronized void produce(int item) throws InterruptedException {
+        while (queue.size() == capacity) {
+            System.out.println("Buffer full. Producer is waiting...");
+            wait(); // wait until buffer has space
+        }
+        queue.add(item);
+        System.out.println("Produced: " + item);
+        notify(); // notify consumer that item is available
+    }
+
+    public synchronized int consume() throws InterruptedException {
+        while (queue.isEmpty()) {
+            System.out.println("Buffer empty. Consumer is waiting...");
+            wait(); // wait until buffer has items
+        }
+        int item = queue.poll();
+        System.out.println("Consumed: " + item);
+        notify(); // notify producer that space is available
+        return item;
+    }
+}
+
+```
+
+
 ## Monitor Lock
