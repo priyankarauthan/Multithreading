@@ -247,3 +247,55 @@ class Buffer {
 
 
 ## Monitor Lock
+
+
+```
+public class EvenOddPrinter {
+    int count = 1;
+    final int maxValue = 10;
+
+    public static void main(String[] args) {
+        EvenOddPrinter printer = new EvenOddPrinter();
+        Thread oddThread = new Thread(() -> printer.printOdd(), "Odd Thread");
+        Thread evenThread = new Thread(() -> printer.printEven(), "Even Thread");
+        oddThread.start();
+        evenThread.start();
+    }
+
+    public synchronized void printOdd() {
+        while (count <= maxValue) {
+            if (count % 2 == 0) {
+                try {
+                    wait();
+                } catch (InterruptedException exception) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+            else{
+                System.out.println(Thread.currentThread().getName()+"-"+ count++);
+                notify();
+            }
+        }
+        notify();
+    }
+
+    public  synchronized void printEven() {
+        while (count <= maxValue) {
+            if (count % 2 != 0) {
+                try {
+                    wait();
+                } catch (InterruptedException exception) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+            else{
+                System.out.println(Thread.currentThread().getName()+"-"+ count++);
+                notify();
+            }
+        }
+        notify();
+    }
+}
+```
+
+
