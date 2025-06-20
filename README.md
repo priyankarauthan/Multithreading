@@ -211,8 +211,9 @@ class Consumer implements Runnable {
         }
     }
 }
+```
 
-
+```
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -312,6 +313,56 @@ Constant	Value	Description
 Thread.MIN_PRIORITY	1	Lowest priority
 Thread.NORM_PRIORITY	5	Default priority
 Thread.MAX_PRIORITY	10	Highest priority
+
+
+###  Callable and Runnable in Java
+
+Both Runnable and Callable are used to define tasks that can be executed by threads, but they have key differences:
+
+### ✅ Callable vs Runnable – Key Differences
+ #### Return Value:
+
+Runnable: Cannot return a result (run() returns void).
+
+Callable: Can return a result (call() returns a value of type V).
+
+#### Exception Handling:
+
+Runnable: Cannot throw checked exceptions.
+
+Callable: Can throw checked exceptions.
+
+#### Method to Implement:
+
+Runnable: Must implement run() method.
+
+Callable: Must implement call() method.
+
+#### Introduced In:
+
+Runnable: Available since Java 1.0.
+
+Callable: Introduced in Java 5 (part of java.util.concurrent package).
+
+#### Usage with Threading API:
+
+Runnable: Used with Thread or ExecutorService.
+
+Callable: Used only with ExecutorService and returns a Future.
+
+#### Getting Result:
+
+Runnable: Cannot provide any result.
+
+Callable: Returns a Future from which the result can be fetched using future.get().
+
+#### Use Case:
+
+Runnable: Suitable for tasks where no result is required.
+
+Callable: Suitable when you need the result of a task or need to handle checked exceptions.
+
+
 
 
 
