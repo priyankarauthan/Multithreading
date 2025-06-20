@@ -297,5 +297,21 @@ public class EvenOddPrinter {
     }
 }
 ```
+### join()
+
+The join() method in Java is used to pause the execution of the current thread until the thread on which join() was called has finished executing.
+
+
+### ✅ Thread Priority in Java
+In Java, thread priority is a hint to the thread scheduler about the importance of a thread. It does not guarantee execution order, but influences which threads the scheduler may choose to run.
+
+### 🔢 Priority Range
+Java threads have a priority value from 1 to 10:
+
+Constant	Value	Description
+Thread.MIN_PRIORITY	1	Lowest priority
+Thread.NORM_PRIORITY	5	Default priority
+Thread.MAX_PRIORITY	10	Highest priority
+
 
 
